@@ -27,7 +27,7 @@ makeCacheMatrix <- function(x = matrix()){
     setinverse <- function(inverse){
         m <<- inverse
     }
-    # the this function returns the inverse value of the makeCacheMatrix object 
+    # this function returns the inverse value of the makeCacheMatrix object 
     getinverse <- function(){
         return(m)
     }
@@ -39,25 +39,25 @@ makeCacheMatrix <- function(x = matrix()){
 
 # This function computes the inverse of the special "matrix" returned by 
 # makeCacheMatrix above. If the inverse has already been calculated (and the
-# matrix has not changed), then the cachesolve should retrieve the inverse
+# matrix has not changed), then the cachesolve retrieves the inverse
 # from the cache.
 cacheSolve <- function(x) {
-    # return a matrix that is the inverse of 'x' - the previously created object
+    # retrieves the value of the inverse from the object cache
+    # (lexical scoping means that the 'm' variable here and the 'm' variable in
+    # in the makeCacheMatrix are not the same)
     m <- x$getinverse()
     # if 'm' (the cached inverse)  that was set in the makeCacheMatrix function
-    # is not null, we return 'm'
+    # is not null, we return it, and note that we use cached data
     if(!is.null(m)) {
         message("got cached data from the object created by makeCacheMatrix")
         return(m)
     }
     # if 'm' is null, we retrieve the matrix value...
     data <- x$get()
-    # we calculate the inverse...
-    # (lexical scoping means that the 'm' in the cacheSolve function is not the
-    # same variable as in the makeCacheMatrix function)
+    # ...we calculate the inverse...
     m <- solve(data)
-    # and we store it using the setinverse function in makeCacheMatrix...
+    # ...and we store it using the setinverse function in makeCacheMatrix...
     x$setinverse(m)
-    # and we return the inverse of the matrix
+    # ...and we return the inverse of the matrix
     return(m)
 }
