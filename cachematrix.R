@@ -1,5 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions are derived from the sample functions given as part of the assignment
+## makeVector and cachemean. They have been modified in the following way:
+## * the correct functionality has been implemented
+## * every function has been commented to demonstrate an understanding of what
+##   they do
+## * minor formatting changes, i.e. return(x) instead of just x on line 25
+
 
 # This function creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()){
